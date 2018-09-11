@@ -1,6 +1,6 @@
 {
   "name": "angular-particle",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -70,6 +70,7 @@
     "zone.js": "^0.8.4"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=10.6.0",
+    "npm": ">=6.1.0"
   }
 }

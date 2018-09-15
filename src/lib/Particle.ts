@@ -1,4 +1,4 @@
-﻿import { IParams, ICanvasParams, ITmpParams, hexToRgb, getColor, createSvgImg }  from './index';
+﻿import { IParams, ICanvasParams, ITmpParams, hexToRgb, getColor, createSvgImg } from './index';
 
 export class Particle {
     radius: number;
@@ -109,7 +109,7 @@ export class Particle {
                 velbase = { x: 1, y: 0 };
                 break;
             case 'bottom-right':
-                velbase = {  x: 0.5, y: 0.5 };
+                velbase = { x: 0.5, y: 0.5 };
                 break;
             case 'bottom':
                 velbase = { x: 0, y: 1 };
@@ -121,10 +121,10 @@ export class Particle {
                 velbase = { x: -1, y: 0 };
                 break;
             case 'top-left':
-                velbase = {  x: -0.5, y: -0.5 };
+                velbase = { x: -0.5, y: -0.5 };
                 break;
             default:
-                velbase = {  x: 0, y: 0 };
+                velbase = { x: 0, y: 0 };
                 break;
         }
 
@@ -145,7 +145,7 @@ export class Particle {
 
         let shape_type: any = this._params.particles.shape.type;
 
-        if (typeof (shape_type) == 'object') {
+        if (typeof (shape_type) === 'object') {
             if (shape_type instanceof Array) {
                 let shape_selected: string = shape_type[Math.floor(Math.random() * shape_type.length)];
                 this.shape = shape_selected;
@@ -154,16 +154,17 @@ export class Particle {
             this.shape = shape_type;
         }
 
-        if (this.shape == 'image') {
+        if (this.shape === 'image') {
             let sh: any = this._params.particles.shape;
             this.img = {
                 src: sh.image.src,
                 ratio: sh.image.width / sh.image.height
             };
 
-            if (!this.img.ratio)
+            if (!this.img.ratio) {
                 this.img.ratio = 1;
-            if (this._tmpParams.img_type == 'svg' && this._tmpParams.source_svg != undefined) {
+            }
+            if (this._tmpParams.img_type === 'svg' && this._tmpParams.source_svg !== undefined) {
                 createSvgImg(this, this._tmpParams);
                 if (this._tmpParams.pushing) {
                     this.img.loaded = false;
@@ -197,14 +198,14 @@ export class Particle {
         let { particles } = this._params;
 
         let radius: number;
-        if (this.radius_bubble != undefined) {
+        if (this.radius_bubble !== undefined) {
             radius = this.radius_bubble;
         } else {
             radius = this.radius;
         }
 
         let opacity: number;
-        if (this.opacity_bubble != undefined) {
+        if (this.opacity_bubble !== undefined) {
             opacity = this.opacity_bubble;
         } else {
             opacity = this.opacity;
@@ -271,14 +272,15 @@ export class Particle {
                     };
                 let img_obj: any;
 
-                if (this._tmpParams.img_type == 'svg') {
+                if (this._tmpParams.img_type === 'svg') {
                     img_obj = this.img.obj;
                 } else {
                     img_obj = this._tmpParams.img_obj;
                 }
 
-                if (img_obj)
+                if (img_obj) {
                     draw(img_obj);
+                }
                 break;
         }
 

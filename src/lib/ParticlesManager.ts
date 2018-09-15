@@ -30,7 +30,7 @@ export class ParticlesManager {
             }
 
             if (this._params.particles.opacity.anim.enable) {
-                if (particle.opacity_status == true) {
+                if (particle.opacity_status === true) {
                     if (particle.opacity >= this._params.particles.opacity.value)
                         particle.opacity_status = false;
                     particle.opacity += particle.vo;
@@ -360,9 +360,9 @@ export class ParticlesManager {
                                 x: number;
                                 y: number;
                             } = {
-                                    x: particle.x + particle.vx,
-                                    y: particle.y + particle.vy
-                                }
+                                x: particle.x + particle.vx,
+                                y: particle.y + particle.vy
+                            }
                             if (pos.x + particle.radius > this._canvasParams.width)
                                 particle.vx = -particle.vx;
                             else if (pos.x - particle.radius < 0)

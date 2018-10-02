@@ -3,6 +3,6 @@ export declare class ParticlesComponent {
     width: number;
     height: number;
     params: IParams;
-    style: Object;
+    style: object;
     constructor();
 }

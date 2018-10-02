@@ -1,67 +1,54 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
 	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common'], factory) :
-	(factory((global['angular-particle'] = {}),global.core,global.common));
-}(this, (function (exports,core,common) { 'use strict';
+	(factory((global['angular-particle'] = global['angular-particle'] || {}),global._angular_core,global._angular_common));
+}(this, (function (exports,_angular_core,_angular_common) { 'use strict';
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-var ParticlesComponent = /** @class */ (function () {
+var ParticlesComponent = (function () {
     function ParticlesComponent() {
         this.width = 100;
         this.height = 100;
         this.style = {};
     }
-    ParticlesComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'particles',
-                    template: "\n        <div [ngStyle]=\"style\" class=\"particles-container\">\n            <canvas d-particles [params]=\"params\" [style.width.%]=\"width\" [style.height.%]=\"height\"></canvas>\n        </div>\n    "
-                },] },
-    ];
-    /** @nocollapse */
-    ParticlesComponent.ctorParameters = function () { return []; };
-    ParticlesComponent.propDecorators = {
-        width: [{ type: core.Input }],
-        height: [{ type: core.Input }],
-        params: [{ type: core.Input }],
-        style: [{ type: core.Input }]
-    };
     return ParticlesComponent;
 }());
-
+ParticlesComponent.decorators = [
+    { type: _angular_core.Component, args: [{
+                selector: 'particles',
+                template: "\n        <div [ngStyle]=\"style\" class=\"particles-container\">\n            <canvas d-particles [params]=\"params\" [style.width.%]=\"width\" [style.height.%]=\"height\"></canvas>\n        </div>\n    "
+            },] },
+];
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @nocollapse
  */
-/** @typedef {?} */
-/** @type {?} */
+ParticlesComponent.ctorParameters = function () { return []; };
+ParticlesComponent.propDecorators = {
+    'width': [{ type: _angular_core.Input },],
+    'height': [{ type: _angular_core.Input },],
+    'params': [{ type: _angular_core.Input },],
+    'style': [{ type: _angular_core.Input },],
+};
+
 var hexToRgb = function (hex) {
-    /** @type {?} */
-    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    var /** @type {?} */ shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, function (m, r, g, b) {
         return r + r + g + g + b + b;
     });
-    /** @type {?} */
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    var /** @type {?} */ result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),
         b: parseInt(result[3], 16)
     } : null;
 };
-/** @type {?} */
 var clamp = function (number, min, max) {
     return Math.min(Math.max(number, min), max);
 };
-/** @type {?} */
 var isInArray = function (value, array) {
     return array.indexOf(value) > -1;
 };
-/** @type {?} */
 var deepExtend = function (destination, source) {
-    for (var property in source) {
+    for (var /** @type {?} */ property in source) {
         if (source[property] &&
             source[property].constructor &&
             source[property].constructor === Object) {
@@ -74,14 +61,11 @@ var deepExtend = function (destination, source) {
     }
     return destination;
 };
-/** @type {?} */
 var getColor = function (colorObject) {
-    /** @type {?} */
-    var color = {};
+    var /** @type {?} */ color = {};
     if (typeof (colorObject) == 'object') {
         if (colorObject instanceof Array) {
-            /** @type {?} */
-            var selectedColor = colorObject[Math.floor(Math.random() * colorObject.length)];
+            var /** @type {?} */ selectedColor = colorObject[Math.floor(Math.random() * colorObject.length)];
             color.rgb = hexToRgb(selectedColor);
         }
         else {
@@ -109,7 +93,6 @@ var getColor = function (colorObject) {
     }
     return color;
 };
-/** @type {?} */
 var getDefaultParams = function () {
     return {
         particles: {
@@ -237,16 +220,14 @@ function loadImg(params, tmp) {
     tmp.img_error = undefined;
     if (particles.shape.type == 'image' && particles.shape.image.src != '') {
         if (tmp.img_type == 'svg') {
-            /** @type {?} */
-            var xhr_1 = new XMLHttpRequest();
+            var /** @type {?} */ xhr_1 = new XMLHttpRequest();
             xhr_1.open('GET', particles.shape.image.src);
             xhr_1.onreadystatechange = function (data) {
                 if (xhr_1.readyState == 4) {
                     if (xhr_1.status == 200) {
                         tmp.source_svg = data.currentTarget.response;
                         if (tmp.source_svg == undefined) {
-                            /** @type {?} */
-                            var check = void 0;
+                            var /** @type {?} */ check = void 0;
                             tmp.checkAnimFrame = requestAnimationFrame(check);
                         }
                     }
@@ -259,8 +240,7 @@ function loadImg(params, tmp) {
             xhr_1.send();
         }
         else {
-            /** @type {?} */
-            var img_1 = new Image();
+            var /** @type {?} */ img_1 = new Image();
             img_1.addEventListener('load', function () {
                 tmp.img_obj = img_1;
                 cancelAnimationFrame(tmp.checkAnimFrame);
@@ -279,14 +259,10 @@ function loadImg(params, tmp) {
  * @return {?}
  */
 function createSvgImg(particle, tmp) {
-    /** @type {?} */
-    var svgXml = tmp.source_svg;
-    /** @type {?} */
-    var rgbHex = /#([0-9A-F]{3,6})/gi;
-    /** @type {?} */
-    var coloredSvgXml = svgXml.replace(rgbHex, function (m, r, g, b) {
-        /** @type {?} */
-        var color_value;
+    var /** @type {?} */ svgXml = tmp.source_svg;
+    var /** @type {?} */ rgbHex = /#([0-9A-F]{3,6})/gi;
+    var /** @type {?} */ coloredSvgXml = svgXml.replace(rgbHex, function (m, r, g, b) {
+        var /** @type {?} */ color_value;
         if (particle.color.rgb) {
             var _a = particle.color.rgb, r_1 = _a.r, g_1 = _a.g, b_1 = _a.b;
             color_value = "rgba( " + r_1 + ", " + g_1 + ", " + b_1 + ", " + particle.opacity + " )";
@@ -297,16 +273,12 @@ function createSvgImg(particle, tmp) {
         }
         return color_value;
     });
-    /** @type {?} */
-    var svg = new Blob([coloredSvgXml], {
+    var /** @type {?} */ svg = new Blob([coloredSvgXml], {
         type: 'image/svg+xml;charset=utf-8'
     });
-    /** @type {?} */
-    var DOMURL = window.URL || window;
-    /** @type {?} */
-    var url = DOMURL.createObjectURL(svg);
-    /** @type {?} */
-    var img = new Image();
+    var /** @type {?} */ DOMURL = window.URL || window;
+    var /** @type {?} */ url = DOMURL.createObjectURL(svg);
+    var /** @type {?} */ img = new Image();
     img.addEventListener('load', function () {
         particle.img.obj = img;
         particle.img.loaded = true;
@@ -316,19 +288,20 @@ function createSvgImg(particle, tmp) {
     img.src = url;
 }
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-var CanvasManager = /** @class */ (function () {
-    function CanvasManager(_canvasParams, _params, _tmpParams) {
+var CanvasManager$$1 = (function () {
+    /**
+     * @param {?} _canvasParams
+     * @param {?} _params
+     * @param {?} _tmpParams
+     */
+    function CanvasManager$$1(_canvasParams, _params, _tmpParams) {
         this._canvasParams = _canvasParams;
         this._params = _params;
         this._tmpParams = _tmpParams;
         this._onWindowResize = this._onWindowResize.bind(this);
         this._retinaInit();
         this._canvasSize();
-        this.particlesManager = new ParticlesManager(this._canvasParams, this._params, this._tmpParams);
+        this.particlesManager = new ParticlesManager$$1(this._canvasParams, this._params, this._tmpParams);
         this.particlesManager.particlesCreate();
         this._densityAutoParticles();
         var particles = this._params.particles;
@@ -337,26 +310,10 @@ var CanvasManager = /** @class */ (function () {
     /**
      * @return {?}
      */
-    CanvasManager.prototype.cancelAnimation = /**
-     * @return {?}
-     */
-    function () {
-        if (!this._tmpParams.drawAnimFrame) {
-            return;
-        }
-        cancelAnimationFrame(this._tmpParams.drawAnimFrame);
-        this._tmpParams.drawAnimFrame = null;
-    };
-    /**
-     * @return {?}
-     */
-    CanvasManager.prototype.draw = /**
-     * @return {?}
-     */
-    function () {
+    CanvasManager$$1.prototype.draw = function () {
         var particles = this._params.particles;
-        if (particles.shape.type === 'image') {
-            if (this._tmpParams.img_type === 'svg') {
+        if (particles.shape.type == 'image') {
+            if (this._tmpParams.img_type == 'svg') {
                 if (this._tmpParams.count_svg >= particles.number.value) {
                     this.particlesManager.particlesDraw();
                     if (!particles.move.enable) {
@@ -373,7 +330,7 @@ var CanvasManager = /** @class */ (function () {
                 }
             }
             else {
-                if (this._tmpParams.img_obj !== undefined) {
+                if (this._tmpParams.img_obj != undefined) {
                     this.particlesManager.particlesDraw();
                     if (!particles.move.enable) {
                         cancelAnimationFrame(this._tmpParams.drawAnimFrame);
@@ -402,21 +359,15 @@ var CanvasManager = /** @class */ (function () {
     /**
      * @return {?}
      */
-    CanvasManager.prototype._densityAutoParticles = /**
-     * @return {?}
-     */
-    function () {
+    CanvasManager$$1.prototype._densityAutoParticles = function () {
         var particles = this._params.particles;
         if (particles.number.density.enable) {
-            /** @type {?} */
-            var area = this._canvasParams.el.width * this._canvasParams.el.height / 1000;
+            var /** @type {?} */ area = this._canvasParams.el.width * this._canvasParams.el.height / 1000;
             if (this._tmpParams.retina) {
                 area = area / (this._canvasParams.pxratio * 2);
             }
-            /** @type {?} */
-            var nb_particles = area * particles.number.value / particles.number.density.value_area;
-            /** @type {?} */
-            var missing_particles = particles.array.length - nb_particles;
+            var /** @type {?} */ nb_particles = area * particles.number.value / particles.number.density.value_area;
+            var /** @type {?} */ missing_particles = particles.array.length - nb_particles;
             if (missing_particles < 0) {
                 this.particlesManager.pushParticles(Math.abs(missing_particles));
             }
@@ -428,10 +379,7 @@ var CanvasManager = /** @class */ (function () {
     /**
      * @return {?}
      */
-    CanvasManager.prototype._retinaInit = /**
-     * @return {?}
-     */
-    function () {
+    CanvasManager$$1.prototype._retinaInit = function () {
         if (this._params.retina_detect && window.devicePixelRatio > 1) {
             this._canvasParams.pxratio = window.devicePixelRatio;
             this._tmpParams.retina = true;
@@ -455,28 +403,19 @@ var CanvasManager = /** @class */ (function () {
     /**
      * @return {?}
      */
-    CanvasManager.prototype._canvasClear = /**
-     * @return {?}
-     */
-    function () {
+    CanvasManager$$1.prototype._canvasClear = function () {
         this._canvasParams.ctx.clearRect(0, 0, this._canvasParams.width, this._canvasParams.height);
     };
     /**
      * @return {?}
      */
-    CanvasManager.prototype._canvasPaint = /**
-     * @return {?}
-     */
-    function () {
+    CanvasManager$$1.prototype._canvasPaint = function () {
         this._canvasParams.ctx.fillRect(0, 0, this._canvasParams.width, this._canvasParams.height);
     };
     /**
      * @return {?}
      */
-    CanvasManager.prototype._canvasSize = /**
-     * @return {?}
-     */
-    function () {
+    CanvasManager$$1.prototype._canvasSize = function () {
         this._canvasParams.el.width = this._canvasParams.width;
         this._canvasParams.el.height = this._canvasParams.height;
         if (this._params && this._params.interactivity.events.resize) {
@@ -486,10 +425,7 @@ var CanvasManager = /** @class */ (function () {
     /**
      * @return {?}
      */
-    CanvasManager.prototype._onWindowResize = /**
-     * @return {?}
-     */
-    function () {
+    CanvasManager$$1.prototype._onWindowResize = function () {
         this._canvasParams.width = this._canvasParams.el.offsetWidth;
         this._canvasParams.height = this._canvasParams.el.offsetHeight;
         if (this._tmpParams.retina) {
@@ -506,15 +442,16 @@ var CanvasManager = /** @class */ (function () {
         }
         this._densityAutoParticles();
     };
-    return CanvasManager;
+    return CanvasManager$$1;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-var ParticlesManager = /** @class */ (function () {
-    function ParticlesManager(_canvasParams, _params, _tmpParams) {
+var ParticlesManager$$1 = (function () {
+    /**
+     * @param {?} _canvasParams
+     * @param {?} _params
+     * @param {?} _tmpParams
+     */
+    function ParticlesManager$$1(_canvasParams, _params, _tmpParams) {
         this._canvasParams = _canvasParams;
         this._params = _params;
         this._tmpParams = _tmpParams;
@@ -523,33 +460,25 @@ var ParticlesManager = /** @class */ (function () {
     /**
      * @return {?}
      */
-    ParticlesManager.prototype.particlesCreate = /**
-     * @return {?}
-     */
-    function () {
+    ParticlesManager$$1.prototype.particlesCreate = function () {
         var _a = this._params.particles, color = _a.color, opacity = _a.opacity;
-        for (var i = 0; i < this._params.particles.number.value; i++) {
-            this._params.particles.array.push(new Particle(this._canvasParams, this._params, this._tmpParams, color, opacity.value));
+        for (var /** @type {?} */ i = 0; i < this._params.particles.number.value; i++) {
+            this._params.particles.array.push(new Particle$$1(this._canvasParams, this._params, this._tmpParams, color, opacity.value));
         }
     };
     /**
      * @return {?}
      */
-    ParticlesManager.prototype._particlesUpdate = /**
-     * @return {?}
-     */
-    function () {
+    ParticlesManager$$1.prototype._particlesUpdate = function () {
         var _this = this;
-        /** @typedef {?} */
         this._params.particles.array.forEach(function (particle, i) {
             if (_this._params.particles.move.enable) {
-                /** @type {?} */
-                var ms = _this._params.particles.move.speed / 2;
+                var /** @type {?} */ ms = _this._params.particles.move.speed / 2;
                 particle.x += particle.vx * ms;
                 particle.y += particle.vy * ms;
             }
             if (_this._params.particles.opacity.anim.enable) {
-                if (particle.opacity_status === true) {
+                if (particle.opacity_status == true) {
                     if (particle.opacity >= _this._params.particles.opacity.value)
                         particle.opacity_status = false;
                     particle.opacity += particle.vo;
@@ -576,8 +505,7 @@ var ParticlesManager = /** @class */ (function () {
                 if (particle.radius < 0)
                     particle.radius = 0;
             }
-            /** @type {?} */
-            var new_pos;
+            var /** @type {?} */ new_pos;
             if (_this._params.particles.move.out_mode == 'bounce') {
                 new_pos = {
                     x_left: particle.radius,
@@ -634,9 +562,8 @@ var ParticlesManager = /** @class */ (function () {
                 _this._repulseParticle(particle);
             }
             if (_this._params.particles.line_linked.enable || _this._params.particles.move.attract.enable) {
-                for (var j = i + 1; j < _this._params.particles.array.length; j++) {
-                    /** @type {?} */
-                    var link = _this._params.particles.array[j];
+                for (var /** @type {?} */ j = i + 1; j < _this._params.particles.array.length; j++) {
+                    var /** @type {?} */ link = _this._params.particles.array[j];
                     if (_this._params.particles.line_linked.enable)
                         _this._interaction.linkParticles(particle, link, _this._params, _this._canvasParams);
                     if (_this._params.particles.move.attract.enable)
@@ -650,10 +577,7 @@ var ParticlesManager = /** @class */ (function () {
     /**
      * @return {?}
      */
-    ParticlesManager.prototype.particlesDraw = /**
-     * @return {?}
-     */
-    function () {
+    ParticlesManager$$1.prototype.particlesDraw = function () {
         this._canvasParams.ctx.clearRect(0, 0, this._canvasParams.width, this._canvasParams.height);
         this._particlesUpdate();
         this._params.particles.array.forEach(function (particle) {
@@ -663,21 +587,14 @@ var ParticlesManager = /** @class */ (function () {
     /**
      * @return {?}
      */
-    ParticlesManager.prototype.particlesEmpty = /**
-     * @return {?}
-     */
-    function () {
+    ParticlesManager$$1.prototype.particlesEmpty = function () {
         this._params.particles.array = [];
     };
     /**
      * @param {?} nb
      * @return {?}
      */
-    ParticlesManager.prototype.removeParticles = /**
-     * @param {?} nb
-     * @return {?}
-     */
-    function (nb) {
+    ParticlesManager$$1.prototype.removeParticles = function (nb) {
         this._params.particles.array.splice(0, nb);
         if (!this._params.particles.move.enable) {
             this.particlesDraw();
@@ -688,15 +605,10 @@ var ParticlesManager = /** @class */ (function () {
      * @param {?=} pos
      * @return {?}
      */
-    ParticlesManager.prototype.pushParticles = /**
-     * @param {?} nb
-     * @param {?=} pos
-     * @return {?}
-     */
-    function (nb, pos) {
+    ParticlesManager$$1.prototype.pushParticles = function (nb, pos) {
         this._tmpParams.pushing = true;
-        for (var i = 0; i < nb; i++) {
-            this._params.particles.array.push(new Particle(this._canvasParams, this._params, this._tmpParams, this._params.particles.color, this._params.particles.opacity.value, {
+        for (var /** @type {?} */ i = 0; i < nb; i++) {
+            this._params.particles.array.push(new Particle$$1(this._canvasParams, this._params, this._tmpParams, this._params.particles.color, this._params.particles.opacity.value, {
                 x: pos ? pos.pos_x : Math.random() * this._canvasParams.width,
                 y: pos ? pos.pos_y : Math.random() * this._canvasParams.height
             }));
@@ -712,24 +624,15 @@ var ParticlesManager = /** @class */ (function () {
      * @param {?} particle
      * @return {?}
      */
-    ParticlesManager.prototype._bubbleParticle = /**
-     * @param {?} particle
-     * @return {?}
-     */
-    function (particle) {
+    ParticlesManager$$1.prototype._bubbleParticle = function (particle) {
         var _this = this;
         if (this._params.interactivity.events.onhover.enable &&
             isInArray('bubble', this._params.interactivity.events.onhover.mode)) {
-            /** @type {?} */
-            var dx_mouse = particle.x - this._params.interactivity.mouse.pos_x;
-            /** @type {?} */
-            var dy_mouse = particle.y - this._params.interactivity.mouse.pos_y;
-            /** @type {?} */
-            var dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-            /** @type {?} */
-            var ratio = 1 - dist_mouse / this._params.interactivity.modes.bubble.distance;
-            /** @type {?} */
-            var init = function () {
+            var /** @type {?} */ dx_mouse = particle.x - this._params.interactivity.mouse.pos_x;
+            var /** @type {?} */ dy_mouse = particle.y - this._params.interactivity.mouse.pos_y;
+            var /** @type {?} */ dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+            var /** @type {?} */ ratio = 1 - dist_mouse / this._params.interactivity.modes.bubble.distance;
+            var /** @type {?} */ init = function () {
                 particle.opacity_bubble = particle.opacity;
                 particle.radius_bubble = particle.radius;
             };
@@ -737,17 +640,14 @@ var ParticlesManager = /** @class */ (function () {
                 if (ratio >= 0 && this._params.interactivity.status == 'mousemove') {
                     if (this._params.interactivity.modes.bubble.size != this._params.particles.size.value) {
                         if (this._params.interactivity.modes.bubble.size > this._params.particles.size.value) {
-                            /** @type {?} */
-                            var size = particle.radius + (this._params.interactivity.modes.bubble.size * ratio);
+                            var /** @type {?} */ size = particle.radius + (this._params.interactivity.modes.bubble.size * ratio);
                             if (size >= 0) {
                                 particle.radius_bubble = size;
                             }
                         }
                         else {
-                            /** @type {?} */
-                            var dif = particle.radius - this._params.interactivity.modes.bubble.size;
-                            /** @type {?} */
-                            var size = particle.radius - (dif * ratio);
+                            var /** @type {?} */ dif = particle.radius - this._params.interactivity.modes.bubble.size;
+                            var /** @type {?} */ size = particle.radius - (dif * ratio);
                             if (size > 0) {
                                 particle.radius_bubble = size;
                             }
@@ -758,15 +658,13 @@ var ParticlesManager = /** @class */ (function () {
                     }
                     if (this._params.interactivity.modes.bubble.opacity != this._params.particles.opacity.value) {
                         if (this._params.interactivity.modes.bubble.opacity > this._params.particles.opacity.value) {
-                            /** @type {?} */
-                            var opacity = this._params.interactivity.modes.bubble.opacity * ratio;
+                            var /** @type {?} */ opacity = this._params.interactivity.modes.bubble.opacity * ratio;
                             if (opacity > particle.opacity && opacity <= this._params.interactivity.modes.bubble.opacity) {
                                 particle.opacity_bubble = opacity;
                             }
                         }
                         else {
-                            /** @type {?} */
-                            var opacity = particle.opacity - (this._params.particles.opacity.value - this._params.interactivity.modes.bubble.opacity) * ratio;
+                            var /** @type {?} */ opacity = particle.opacity - (this._params.particles.opacity.value - this._params.interactivity.modes.bubble.opacity) * ratio;
                             if (opacity < particle.opacity && opacity >= this._params.interactivity.modes.bubble.opacity) {
                                 particle.opacity_bubble = opacity;
                             }
@@ -784,14 +682,10 @@ var ParticlesManager = /** @class */ (function () {
         else if (this._params.interactivity.events.onclick.enable &&
             isInArray('bubble', this._params.interactivity.events.onclick.mode)) {
             if (this._tmpParams.bubble_clicking) {
-                /** @type {?} */
-                var dx_mouse = particle.x - this._params.interactivity.mouse.click_pos_x;
-                /** @type {?} */
-                var dy_mouse = particle.y - this._params.interactivity.mouse.click_pos_y;
-                /** @type {?} */
-                var dist_mouse_1 = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-                /** @type {?} */
-                var time_spent_1 = (new Date().getTime() - this._params.interactivity.mouse.click_time) / 1000;
+                var /** @type {?} */ dx_mouse = particle.x - this._params.interactivity.mouse.click_pos_x;
+                var /** @type {?} */ dy_mouse = particle.y - this._params.interactivity.mouse.click_pos_y;
+                var /** @type {?} */ dist_mouse_1 = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+                var /** @type {?} */ time_spent_1 = (new Date().getTime() - this._params.interactivity.mouse.click_time) / 1000;
                 if (time_spent_1 > this._params.interactivity.modes.bubble.duration) {
                     this._tmpParams.bubble_duration_end = true;
                 }
@@ -799,13 +693,11 @@ var ParticlesManager = /** @class */ (function () {
                     this._tmpParams.bubble_clicking = false;
                     this._tmpParams.bubble_duration_end = false;
                 }
-                /** @type {?} */
-                var process = function (bubble_param, particles_param, p_obj_bubble, p_obj, id) {
+                var /** @type {?} */ process = function (bubble_param, particles_param, p_obj_bubble, p_obj, id) {
                     if (bubble_param != particles_param) {
                         if (!_this._tmpParams.bubble_duration_end) {
                             if (dist_mouse_1 <= _this._params.interactivity.modes.bubble.distance) {
-                                /** @type {?} */
-                                var obj = void 0;
+                                var /** @type {?} */ obj = void 0;
                                 if (p_obj_bubble != undefined) {
                                     obj = p_obj_bubble;
                                 }
@@ -813,8 +705,7 @@ var ParticlesManager = /** @class */ (function () {
                                     obj = p_obj;
                                 }
                                 if (obj != bubble_param) {
-                                    /** @type {?} */
-                                    var value = p_obj - (time_spent_1 * (p_obj - bubble_param) / _this._params.interactivity.modes.bubble.duration);
+                                    var /** @type {?} */ value = p_obj - (time_spent_1 * (p_obj - bubble_param) / _this._params.interactivity.modes.bubble.duration);
                                     if (id == 'size')
                                         particle.radius_bubble = value;
                                     if (id == 'opacity')
@@ -830,12 +721,9 @@ var ParticlesManager = /** @class */ (function () {
                         }
                         else {
                             if (p_obj_bubble != undefined) {
-                                /** @type {?} */
-                                var value_tmp = p_obj - (time_spent_1 * (p_obj - bubble_param) / _this._params.interactivity.modes.bubble.duration);
-                                /** @type {?} */
-                                var dif = bubble_param - value_tmp;
-                                /** @type {?} */
-                                var value = bubble_param + dif;
+                                var /** @type {?} */ value_tmp = p_obj - (time_spent_1 * (p_obj - bubble_param) / _this._params.interactivity.modes.bubble.duration);
+                                var /** @type {?} */ dif = bubble_param - value_tmp;
+                                var /** @type {?} */ value = bubble_param + dif;
                                 if (id == 'size')
                                     particle.radius_bubble = value;
                                 if (id == 'opacity')
@@ -855,31 +743,19 @@ var ParticlesManager = /** @class */ (function () {
      * @param {?} particle
      * @return {?}
      */
-    ParticlesManager.prototype._repulseParticle = /**
-     * @param {?} particle
-     * @return {?}
-     */
-    function (particle) {
+    ParticlesManager$$1.prototype._repulseParticle = function (particle) {
         var _this = this;
         if (this._params.interactivity.events.onhover.enable &&
             isInArray('repulse', this._params.interactivity.events.onhover.mode) &&
             this._params.interactivity.status == 'mousemove') {
-            /** @type {?} */
-            var dx_mouse = particle.x - this._params.interactivity.mouse.pos_x;
-            /** @type {?} */
-            var dy_mouse = particle.y - this._params.interactivity.mouse.pos_y;
-            /** @type {?} */
-            var dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-            /** @type {?} */
-            var normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
-            /** @type {?} */
-            var repulseRadius = this._params.interactivity.modes.repulse.distance;
-            /** @type {?} */
-            var velocity = 100;
-            /** @type {?} */
-            var repulseFactor = clamp((1 / repulseRadius) * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
-            /** @type {?} */
-            var pos = {
+            var /** @type {?} */ dx_mouse = particle.x - this._params.interactivity.mouse.pos_x;
+            var /** @type {?} */ dy_mouse = particle.y - this._params.interactivity.mouse.pos_y;
+            var /** @type {?} */ dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+            var /** @type {?} */ normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
+            var /** @type {?} */ repulseRadius = this._params.interactivity.modes.repulse.distance;
+            var /** @type {?} */ velocity = 100;
+            var /** @type {?} */ repulseFactor = clamp((1 / repulseRadius) * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
+            var /** @type {?} */ pos = {
                 x: particle.x + normVec.x * repulseFactor,
                 y: particle.y + normVec.y * repulseFactor
             };
@@ -902,25 +778,17 @@ var ParticlesManager = /** @class */ (function () {
                     this._tmpParams.repulse_finish = true;
             }
             if (this._tmpParams.repulse_clicking) {
-                /** @type {?} */
-                var repulseRadius = Math.pow(this._params.interactivity.modes.repulse.distance / 6, 3);
-                /** @type {?} */
-                var dx_1 = this._params.interactivity.mouse.click_pos_x - particle.x;
-                /** @type {?} */
-                var dy_1 = this._params.interactivity.mouse.click_pos_y - particle.y;
-                /** @type {?} */
-                var d = dx_1 * dx_1 + dy_1 * dy_1;
-                /** @type {?} */
-                var force_1 = -repulseRadius / d * 1;
-                /** @type {?} */
-                var process = function () {
-                    /** @type {?} */
-                    var f = Math.atan2(dy_1, dx_1);
+                var /** @type {?} */ repulseRadius = Math.pow(this._params.interactivity.modes.repulse.distance / 6, 3);
+                var /** @type {?} */ dx_1 = this._params.interactivity.mouse.click_pos_x - particle.x;
+                var /** @type {?} */ dy_1 = this._params.interactivity.mouse.click_pos_y - particle.y;
+                var /** @type {?} */ d = dx_1 * dx_1 + dy_1 * dy_1;
+                var /** @type {?} */ force_1 = -repulseRadius / d * 1;
+                var /** @type {?} */ process = function () {
+                    var /** @type {?} */ f = Math.atan2(dy_1, dx_1);
                     particle.vx = force_1 * Math.cos(f);
                     particle.vy = force_1 * Math.sin(f);
                     if (_this._params.particles.move.out_mode == 'bounce') {
-                        /** @type {?} */
-                        var pos = {
+                        var /** @type {?} */ pos = {
                             x: particle.x + particle.vx,
                             y: particle.y + particle.vy
                         };
@@ -950,27 +818,18 @@ var ParticlesManager = /** @class */ (function () {
      * @param {?} particle
      * @return {?}
      */
-    ParticlesManager.prototype._grabParticle = /**
-     * @param {?} particle
-     * @return {?}
-     */
-    function (particle) {
+    ParticlesManager$$1.prototype._grabParticle = function (particle) {
         var _a = this._params, interactivity = _a.interactivity, particles = _a.particles;
         if (interactivity.events.onhover.enable &&
             interactivity.status == 'mousemove') {
-            /** @type {?} */
-            var dx_mouse = particle.x - interactivity.mouse.pos_x;
-            /** @type {?} */
-            var dy_mouse = particle.y - interactivity.mouse.pos_y;
-            /** @type {?} */
-            var dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+            var /** @type {?} */ dx_mouse = particle.x - interactivity.mouse.pos_x;
+            var /** @type {?} */ dy_mouse = particle.y - interactivity.mouse.pos_y;
+            var /** @type {?} */ dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
             if (dist_mouse <= interactivity.modes.grab.distance) {
                 var grab = interactivity.modes.grab;
-                /** @type {?} */
-                var opacity_line = grab.line_linked.opacity - (dist_mouse / (1 / grab.line_linked.opacity)) / grab.distance;
+                var /** @type {?} */ opacity_line = grab.line_linked.opacity - (dist_mouse / (1 / grab.line_linked.opacity)) / grab.distance;
                 if (opacity_line > 0) {
-                    /** @type {?} */
-                    var color_line = particles.line_linked.color_rgb_line;
+                    var /** @type {?} */ color_line = particles.line_linked.color_rgb_line;
                     var r = color_line.r, g = color_line.g, b = color_line.b;
                     this._canvasParams.ctx.strokeStyle = "rgba( " + r + ", " + g + ", " + b + ", " + opacity_line + " )";
                     this._canvasParams.ctx.lineWidth = particles.line_linked.width;
@@ -983,15 +842,19 @@ var ParticlesManager = /** @class */ (function () {
             }
         }
     };
-    return ParticlesManager;
+    return ParticlesManager$$1;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-var Particle = /** @class */ (function () {
-    function Particle(_canvasParams, _params, _tmpParams, color, opacity, position) {
+var Particle$$1 = (function () {
+    /**
+     * @param {?} _canvasParams
+     * @param {?} _params
+     * @param {?} _tmpParams
+     * @param {?=} color
+     * @param {?=} opacity
+     * @param {?=} position
+     */
+    function Particle$$1(_canvasParams, _params, _tmpParams, color, opacity, position) {
         this._canvasParams = _canvasParams;
         this._params = _params;
         this._tmpParams = _tmpParams;
@@ -1004,10 +867,7 @@ var Particle = /** @class */ (function () {
     /**
      * @return {?}
      */
-    Particle.prototype._setupSize = /**
-     * @return {?}
-     */
-    function () {
+    Particle$$1.prototype._setupSize = function () {
         this.radius = (this._params.particles.size.random ? Math.random() : 1) * this._params.particles.size.value;
         if (this._params.particles.size.anim.enable) {
             this.size_status = false;
@@ -1020,11 +880,7 @@ var Particle = /** @class */ (function () {
      * @param {?=} position
      * @return {?}
      */
-    Particle.prototype._setupPosition = /**
-     * @param {?=} position
-     * @return {?}
-     */
-    function (position) {
+    Particle$$1.prototype._setupPosition = function (position) {
         this.x = position ? position.x : Math.random() * this._canvasParams.width;
         this.y = position ? position.y : Math.random() * this._canvasParams.height;
         if (this.x > this._canvasParams.width - this.radius * 2) {
@@ -1048,23 +904,14 @@ var Particle = /** @class */ (function () {
      * @param {?=} position
      * @return {?}
      */
-    Particle.prototype._checkOverlap = /**
-     * @param {?} p1
-     * @param {?=} position
-     * @return {?}
-     */
-    function (p1, position) {
+    Particle$$1.prototype._checkOverlap = function (p1, position) {
         var _this = this;
         var particles = this._params.particles;
         particles.array.forEach(function (particle) {
-            /** @type {?} */
-            var p2 = particle;
-            /** @type {?} */
-            var dx = p1.x - p2.x;
-            /** @type {?} */
-            var dy = p1.y - p2.y;
-            /** @type {?} */
-            var dist = Math.sqrt(dx * dx + dy * dy);
+            var /** @type {?} */ p2 = particle;
+            var /** @type {?} */ dx = p1.x - p2.x;
+            var /** @type {?} */ dy = p1.y - p2.y;
+            var /** @type {?} */ dist = Math.sqrt(dx * dx + dy * dy);
             if (dist <= p1.radius + p2.radius) {
                 p1.x = position ? position.x : Math.random() * _this._canvasParams.width;
                 p1.y = position ? position.y : Math.random() * _this._canvasParams.height;
@@ -1076,20 +923,13 @@ var Particle = /** @class */ (function () {
      * @param {?=} color
      * @return {?}
      */
-    Particle.prototype._setupColor = /**
-     * @param {?=} color
-     * @return {?}
-     */
-    function (color) {
+    Particle$$1.prototype._setupColor = function (color) {
         this.color = getColor(color.value);
     };
     /**
      * @return {?}
      */
-    Particle.prototype._setupOpacity = /**
-     * @return {?}
-     */
-    function () {
+    Particle$$1.prototype._setupOpacity = function () {
         this.opacity = (this._params.particles.opacity.random ? Math.random() : 1) * this._params.particles.opacity.value;
         if (this._params.particles.opacity.anim.enable) {
             this.opacity_status = false;
@@ -1102,12 +942,8 @@ var Particle = /** @class */ (function () {
     /**
      * @return {?}
      */
-    Particle.prototype._setupAnimation = /**
-     * @return {?}
-     */
-    function () {
-        /** @type {?} */
-        var velbase = null;
+    Particle$$1.prototype._setupAnimation = function () {
+        var /** @type {?} */ velbase = null;
         switch (this._params.particles.move.direction) {
             case 'top':
                 velbase = { x: 0, y: -1 };
@@ -1151,29 +987,25 @@ var Particle = /** @class */ (function () {
         }
         this.vx_i = this.vx;
         this.vy_i = this.vy;
-        /** @type {?} */
-        var shape_type = this._params.particles.shape.type;
-        if (typeof (shape_type) === 'object') {
+        var /** @type {?} */ shape_type = this._params.particles.shape.type;
+        if (typeof (shape_type) == 'object') {
             if (shape_type instanceof Array) {
-                /** @type {?} */
-                var shape_selected = shape_type[Math.floor(Math.random() * shape_type.length)];
+                var /** @type {?} */ shape_selected = shape_type[Math.floor(Math.random() * shape_type.length)];
                 this.shape = shape_selected;
             }
         }
         else {
             this.shape = shape_type;
         }
-        if (this.shape === 'image') {
-            /** @type {?} */
-            var sh = this._params.particles.shape;
+        if (this.shape == 'image') {
+            var /** @type {?} */ sh = this._params.particles.shape;
             this.img = {
                 src: sh.image.src,
                 ratio: sh.image.width / sh.image.height
             };
-            if (!this.img.ratio) {
+            if (!this.img.ratio)
                 this.img.ratio = 1;
-            }
-            if (this._tmpParams.img_type === 'svg' && this._tmpParams.source_svg !== undefined) {
+            if (this._tmpParams.img_type == 'svg' && this._tmpParams.source_svg != undefined) {
                 createSvgImg(this, this._tmpParams);
                 if (this._tmpParams.pushing) {
                     this.img.loaded = false;
@@ -1190,29 +1022,16 @@ var Particle = /** @class */ (function () {
      * @param {?} sideCountDenominator
      * @return {?}
      */
-    Particle.prototype._drawShape = /**
-     * @param {?} c
-     * @param {?} startX
-     * @param {?} startY
-     * @param {?} sideLength
-     * @param {?} sideCountNumerator
-     * @param {?} sideCountDenominator
-     * @return {?}
-     */
-    function (c, startX, startY, sideLength, sideCountNumerator, sideCountDenominator) {
-        /** @type {?} */
-        var sideCount = sideCountNumerator * sideCountDenominator;
-        /** @type {?} */
-        var decimalSides = sideCountNumerator / sideCountDenominator;
-        /** @type {?} */
-        var interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
-        /** @type {?} */
-        var interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180;
+    Particle$$1.prototype._drawShape = function (c, startX, startY, sideLength, sideCountNumerator, sideCountDenominator) {
+        var /** @type {?} */ sideCount = sideCountNumerator * sideCountDenominator;
+        var /** @type {?} */ decimalSides = sideCountNumerator / sideCountDenominator;
+        var /** @type {?} */ interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
+        var /** @type {?} */ interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180;
         c.save();
         c.beginPath();
         c.translate(startX, startY);
         c.moveTo(0, 0);
-        for (var i = 0; i < sideCount; i++) {
+        for (var /** @type {?} */ i = 0; i < sideCount; i++) {
             c.lineTo(sideLength, 0);
             c.translate(sideLength, 0);
             c.rotate(interiorAngle);
@@ -1223,30 +1042,24 @@ var Particle = /** @class */ (function () {
     /**
      * @return {?}
      */
-    Particle.prototype.draw = /**
-     * @return {?}
-     */
-    function () {
+    Particle$$1.prototype.draw = function () {
         var _this = this;
         var particles = this._params.particles;
-        /** @type {?} */
-        var radius;
-        if (this.radius_bubble !== undefined) {
+        var /** @type {?} */ radius;
+        if (this.radius_bubble != undefined) {
             radius = this.radius_bubble;
         }
         else {
             radius = this.radius;
         }
-        /** @type {?} */
-        var opacity;
-        if (this.opacity_bubble !== undefined) {
+        var /** @type {?} */ opacity;
+        if (this.opacity_bubble != undefined) {
             opacity = this.opacity_bubble;
         }
         else {
             opacity = this.opacity;
         }
-        /** @type {?} */
-        var color_value;
+        var /** @type {?} */ color_value;
         if (this.color.rgb) {
             var _a = this.color.rgb, r = _a.r, g = _a.g, b = _a.b;
             color_value = "rgba( " + r + ", " + g + ", " + b + ", " + opacity + " )";
@@ -1274,21 +1087,18 @@ var Particle = /** @class */ (function () {
                 this._drawShape(this._canvasParams.ctx, this.x - radius * 2 / (this._params.particles.shape.polygon.nb_sides / 4), this.y - radius / (2 * 2.66 / 3.5), radius * 2 * 2.66 / (this._params.particles.shape.polygon.nb_sides / 3), this._params.particles.shape.polygon.nb_sides, 2);
                 break;
             case 'image':
-                /** @type {?} */
-                var draw = function (img_obj) {
+                var /** @type {?} */ draw = function (img_obj) {
                     _this._canvasParams.ctx.drawImage(img_obj, _this.x - radius, _this.y - radius, radius * 2, radius * 2 / _this.img.ratio);
                 };
-                /** @type {?} */
-                var img_obj = void 0;
-                if (this._tmpParams.img_type === 'svg') {
+                var /** @type {?} */ img_obj = void 0;
+                if (this._tmpParams.img_type == 'svg') {
                     img_obj = this.img.obj;
                 }
                 else {
                     img_obj = this._tmpParams.img_obj;
                 }
-                if (img_obj) {
+                if (img_obj)
                     draw(img_obj);
-                }
                 break;
         }
         this._canvasParams.ctx.closePath();
@@ -1299,14 +1109,10 @@ var Particle = /** @class */ (function () {
         }
         this._canvasParams.ctx.fill();
     };
-    return Particle;
+    return Particle$$1;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-var ParticleInteraction = /** @class */ (function () {
+var ParticleInteraction = (function () {
     function ParticleInteraction() {
     }
     /**
@@ -1316,27 +1122,15 @@ var ParticleInteraction = /** @class */ (function () {
      * @param {?} canvasParams
      * @return {?}
      */
-    ParticleInteraction.prototype.linkParticles = /**
-     * @param {?} p1
-     * @param {?} p2
-     * @param {?} params
-     * @param {?} canvasParams
-     * @return {?}
-     */
-    function (p1, p2, params, canvasParams) {
-        /** @type {?} */
-        var dx = p1.x - p2.x;
-        /** @type {?} */
-        var dy = p1.y - p2.y;
-        /** @type {?} */
-        var dist = Math.sqrt(dx * dx + dy * dy);
+    ParticleInteraction.prototype.linkParticles = function (p1, p2, params, canvasParams) {
+        var /** @type {?} */ dx = p1.x - p2.x;
+        var /** @type {?} */ dy = p1.y - p2.y;
+        var /** @type {?} */ dist = Math.sqrt(dx * dx + dy * dy);
         var line_linked = params.particles.line_linked;
         if (dist <= params.particles.line_linked.distance) {
-            /** @type {?} */
-            var opacity_line = params.particles.line_linked.opacity - (dist / (1 / params.particles.line_linked.opacity)) / params.particles.line_linked.distance;
+            var /** @type {?} */ opacity_line = params.particles.line_linked.opacity - (dist / (1 / params.particles.line_linked.opacity)) / params.particles.line_linked.distance;
             if (opacity_line > 0) {
-                /** @type {?} */
-                var color_line = params.particles.line_linked.color_rgb_line;
+                var /** @type {?} */ color_line = params.particles.line_linked.color_rgb_line;
                 var r = color_line.r, g = color_line.g, b = color_line.b;
                 canvasParams.ctx.save();
                 canvasParams.ctx.strokeStyle = "rgba( " + r + ", " + g + ", " + b + ", " + opacity_line + " )";
@@ -1360,24 +1154,13 @@ var ParticleInteraction = /** @class */ (function () {
      * @param {?} params
      * @return {?}
      */
-    ParticleInteraction.prototype.attractParticles = /**
-     * @param {?} p1
-     * @param {?} p2
-     * @param {?} params
-     * @return {?}
-     */
-    function (p1, p2, params) {
-        /** @type {?} */
-        var dx = p1.x - p2.x;
-        /** @type {?} */
-        var dy = p1.y - p2.y;
-        /** @type {?} */
-        var dist = Math.sqrt(dx * dx + dy * dy);
+    ParticleInteraction.prototype.attractParticles = function (p1, p2, params) {
+        var /** @type {?} */ dx = p1.x - p2.x;
+        var /** @type {?} */ dy = p1.y - p2.y;
+        var /** @type {?} */ dist = Math.sqrt(dx * dx + dy * dy);
         if (dist <= params.particles.line_linked.distance) {
-            /** @type {?} */
-            var ax = dx / (params.particles.move.attract.rotateX * 1000);
-            /** @type {?} */
-            var ay = dy / (params.particles.move.attract.rotateY * 1000);
+            var /** @type {?} */ ax = dx / (params.particles.move.attract.rotateX * 1000);
+            var /** @type {?} */ ay = dy / (params.particles.move.attract.rotateY * 1000);
             p1.vx -= ax;
             p1.vy -= ay;
             p2.vx += ax;
@@ -1389,20 +1172,11 @@ var ParticleInteraction = /** @class */ (function () {
      * @param {?} p2
      * @return {?}
      */
-    ParticleInteraction.prototype.bounceParticles = /**
-     * @param {?} p1
-     * @param {?} p2
-     * @return {?}
-     */
-    function (p1, p2) {
-        /** @type {?} */
-        var dx = p1.x - p2.x;
-        /** @type {?} */
-        var dy = p1.y - p2.y;
-        /** @type {?} */
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        /** @type {?} */
-        var dist_p = p1.radius + p2.radius;
+    ParticleInteraction.prototype.bounceParticles = function (p1, p2) {
+        var /** @type {?} */ dx = p1.x - p2.x;
+        var /** @type {?} */ dy = p1.y - p2.y;
+        var /** @type {?} */ dist = Math.sqrt(dx * dx + dy * dy);
+        var /** @type {?} */ dist_p = p1.radius + p2.radius;
         if (dist <= dist_p) {
             p1.vx = -p1.vx;
             p1.vy = -p1.vy;
@@ -1413,28 +1187,21 @@ var ParticleInteraction = /** @class */ (function () {
     return ParticleInteraction;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-var ParticlesDirective = /** @class */ (function () {
+var ParticlesDirective = (function () {
+    /**
+     * @param {?} el
+     */
     function ParticlesDirective(el) {
         this.el = el;
         this._tmpParams = {};
     }
     Object.defineProperty(ParticlesDirective.prototype, "params", {
-        set: /**
+        /**
          * @param {?} value
          * @return {?}
          */
-        function (value) {
-            /** @type {?} */
-            var defaultParams = getDefaultParams();
+        set: function (value) {
+            var /** @type {?} */ defaultParams = getDefaultParams();
             this._params = deepExtend(defaultParams, value);
         },
         enumerable: true,
@@ -1443,22 +1210,7 @@ var ParticlesDirective = /** @class */ (function () {
     /**
      * @return {?}
      */
-    ParticlesDirective.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-    function () {
-        if (!this._canvasManager) {
-            return;
-        }
-        this._canvasManager.cancelAnimation();
-    };
-    /**
-     * @return {?}
-     */
-    ParticlesDirective.prototype.ngAfterViewInit = /**
-     * @return {?}
-     */
-    function () {
+    ParticlesDirective.prototype.ngAfterViewInit = function () {
         this._canvasParams = {
             el: this.el.nativeElement,
             ctx: this.el.nativeElement.getContext('2d'),
@@ -1481,29 +1233,20 @@ var ParticlesDirective = /** @class */ (function () {
             this._tmpParams.img_type = this._params.particles.shape.image.src.substr(this._params.particles.shape.image.src.length - 3);
             loadImg(this._params, this._tmpParams);
         }
-        this._canvasManager = new CanvasManager(this._canvasParams, this._params, this._tmpParams);
+        this._canvasManager = new CanvasManager$$1(this._canvasParams, this._params, this._tmpParams);
         this._canvasManager.draw();
     };
     /**
      * Mouse move event
-     * @param event
-     */
-    /**
-     * Mouse move event
+    \@param event
      * @param {?} event
      * @return {?}
      */
-    ParticlesDirective.prototype.onMouseMove = /**
-     * Mouse move event
-     * @param {?} event
-     * @return {?}
-     */
-    function (event) {
+    ParticlesDirective.prototype.onMouseMove = function (event) {
         var interactivity = this._params.interactivity;
         if (interactivity.events.onhover.enable ||
             interactivity.events.onclick.enable) {
-            /** @type {?} */
-            var pos = void 0;
+            var /** @type {?} */ pos = void 0;
             if (interactivity.el == window) {
                 pos = {
                     x: event.clientX,
@@ -1527,16 +1270,9 @@ var ParticlesDirective = /** @class */ (function () {
     };
     /**
      * Mouse leave event
-     */
-    /**
-     * Mouse leave event
      * @return {?}
      */
-    ParticlesDirective.prototype.onMouseLeave = /**
-     * Mouse leave event
-     * @return {?}
-     */
-    function () {
+    ParticlesDirective.prototype.onMouseLeave = function () {
         var interactivity = this._params.interactivity;
         if (interactivity.events.onhover.enable ||
             interactivity.events.onclick.enable) {
@@ -1547,16 +1283,9 @@ var ParticlesDirective = /** @class */ (function () {
     };
     /**
      * Click event
-     */
-    /**
-     * Click event
      * @return {?}
      */
-    ParticlesDirective.prototype.onClick = /**
-     * Click event
-     * @return {?}
-     */
-    function () {
+    ParticlesDirective.prototype.onClick = function () {
         var _this = this;
         var _a = this._params, interactivity = _a.interactivity, particles = _a.particles;
         if (interactivity.events.onclick.enable) {
@@ -1594,48 +1323,50 @@ var ParticlesDirective = /** @class */ (function () {
             }
         }
     };
-    ParticlesDirective.decorators = [
-        { type: core.Directive, args: [{
-                    selector: '[d-particles]'
-                },] },
-    ];
-    /** @nocollapse */
-    ParticlesDirective.ctorParameters = function () { return [
-        { type: core.ElementRef }
-    ]; };
-    ParticlesDirective.propDecorators = {
-        params: [{ type: core.Input }],
-        onMouseMove: [{ type: core.HostListener, args: ['mousemove', ['$event'],] }],
-        onMouseLeave: [{ type: core.HostListener, args: ['mouseleave',] }],
-        onClick: [{ type: core.HostListener, args: ['click',] }]
-    };
     return ParticlesDirective;
 }());
-
+ParticlesDirective.decorators = [
+    { type: _angular_core.Directive, args: [{
+                selector: '[d-particles]'
+            },] },
+];
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @nocollapse
  */
-var ParticlesModule = /** @class */ (function () {
+ParticlesDirective.ctorParameters = function () { return [
+    { type: _angular_core.ElementRef, },
+]; };
+ParticlesDirective.propDecorators = {
+    'params': [{ type: _angular_core.Input },],
+    'onMouseMove': [{ type: _angular_core.HostListener, args: ['mousemove', ['$event'],] },],
+    'onMouseLeave': [{ type: _angular_core.HostListener, args: ['mouseleave',] },],
+    'onClick': [{ type: _angular_core.HostListener, args: ['click',] },],
+};
+
+var ParticlesModule = (function () {
     function ParticlesModule() {
     }
-    ParticlesModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [
-                        common.CommonModule
-                    ],
-                    declarations: [
-                        ParticlesComponent,
-                        ParticlesDirective
-                    ],
-                    exports: [
-                        ParticlesComponent,
-                        ParticlesDirective
-                    ]
-                },] },
-    ];
     return ParticlesModule;
 }());
+ParticlesModule.decorators = [
+    { type: _angular_core.NgModule, args: [{
+                imports: [
+                    _angular_common.CommonModule
+                ],
+                declarations: [
+                    ParticlesComponent,
+                    ParticlesDirective
+                ],
+                exports: [
+                    ParticlesComponent,
+                    ParticlesDirective
+                ]
+            },] },
+];
+/**
+ * @nocollapse
+ */
+ParticlesModule.ctorParameters = function () { return []; };
 
 exports.ParticlesModule = ParticlesModule;
 exports.ParticlesComponent = ParticlesComponent;

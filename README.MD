@@ -100,4 +100,4 @@ export class AppComponent implements OnInit {
 
 ## License
 
-MIT © Benjamin Bougot
+MIT © [Luc Raymond](mailto:ryukku.raymond@gmail.com)

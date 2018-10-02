@@ -5,12 +5,11 @@ export declare class CanvasManager {
     private _tmpParams;
     particlesManager: ParticlesManager;
     constructor(_canvasParams: ICanvasParams, _params: IParams, _tmpParams: ITmpParams);
-    cancelAnimation(): void;
     draw(): void;
-    private _densityAutoParticles;
-    private _retinaInit;
-    private _canvasClear;
-    private _canvasPaint;
-    private _canvasSize;
-    private _onWindowResize;
+    private _densityAutoParticles();
+    private _retinaInit();
+    private _canvasClear();
+    private _canvasPaint();
+    private _canvasSize();
+    private _onWindowResize();
 }

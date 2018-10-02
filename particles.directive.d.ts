@@ -1,6 +1,6 @@
-import { ElementRef, AfterViewInit, OnDestroy } from "@angular/core";
+import { ElementRef, AfterViewInit } from "@angular/core";
 import { IParams } from './lib/index';
-export declare class ParticlesDirective implements AfterViewInit, OnDestroy {
+export declare class ParticlesDirective implements AfterViewInit {
     private el;
     params: IParams;
     constructor(el: ElementRef);
@@ -8,7 +8,6 @@ export declare class ParticlesDirective implements AfterViewInit, OnDestroy {
     private _params;
     private _tmpParams;
     private _canvasManager;
-    ngOnDestroy(): void;
     ngAfterViewInit(): void;
     /**
      * Mouse move event

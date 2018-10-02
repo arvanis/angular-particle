@@ -29,12 +29,12 @@ export declare class Particle {
         x: number;
         y: number;
     });
-    private _setupSize;
-    private _setupPosition;
-    private _checkOverlap;
-    private _setupColor;
-    private _setupOpacity;
-    private _setupAnimation;
-    private _drawShape;
+    private _setupSize();
+    private _setupPosition(position?);
+    private _checkOverlap(p1, position?);
+    private _setupColor(color?);
+    private _setupOpacity();
+    private _setupAnimation();
+    private _drawShape(c, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
     draw(): void;
 }

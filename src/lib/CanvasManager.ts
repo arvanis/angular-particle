@@ -29,8 +29,8 @@ export class CanvasManager {
     public draw(): void {
         let { particles } = this._params;
 
-        if (particles.shape.type == 'image') {
-            if (this._tmpParams.img_type == 'svg') {
+        if (particles.shape.type === 'image') {
+            if (this._tmpParams.img_type === 'svg') {
                 if (this._tmpParams.count_svg >= particles.number.value) {
                     this.particlesManager.particlesDraw();
                     if (!particles.move.enable) {
@@ -44,7 +44,7 @@ export class CanvasManager {
                     }
                 }
             } else {
-                if (this._tmpParams.img_obj != undefined) {
+                if (this._tmpParams.img_obj !== undefined) {
                     this.particlesManager.particlesDraw();
                     if (!particles.move.enable) {
                         cancelAnimationFrame(this._tmpParams.drawAnimFrame);

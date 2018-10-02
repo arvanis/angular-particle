@@ -1,7 +1,7 @@
 {
-  "generator-angular2-library": {
-    "promptValues": {
-      "gitRepositoryUrl": "https://github.com/ryuKKu-/angular-particle"
+    "generator-angular2-library": {
+        "promptValues": {
+            "gitRepositoryUrl": "https://github.com/bbougot/angular-particle"
+        }
     }
-  }
 }

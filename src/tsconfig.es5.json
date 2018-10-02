@@ -22,7 +22,7 @@
         "strictMetadataEmit": true,
         "skipTemplateCodegen": true,
         "flatModuleOutFile": "angular-particle.js",
-        "flatModuleId": "@bbougot/angular-particle"
+        "flatModuleId": "angular-particle"
     },
     "files": [
         "./index.ts"

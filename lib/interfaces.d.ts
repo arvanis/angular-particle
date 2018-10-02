@@ -1,11 +1,10 @@
-﻿export interface ICanvasParams {
+export interface ICanvasParams {
     el: HTMLCanvasElement;
     width: number;
     height: number;
     pxratio?: number;
     ctx?: CanvasRenderingContext2D;
 }
-
 export interface ITmpParams {
     obj?: {
         size_value: number;
@@ -32,8 +31,7 @@ export interface ITmpParams {
     repulse_count?: number;
     checkAnimFrame?: any;
     drawAnimFrame?: any;
-};
-
+}
 export interface IMouseParams {
     pos_x?: number;
     pos_y?: number;
@@ -41,7 +39,6 @@ export interface IMouseParams {
     click_pos_y?: number;
     click_time?: number;
 }
-
 export interface IParams {
     particles: {
         number: {
@@ -49,7 +46,7 @@ export interface IParams {
             density: {
                 enable: boolean;
                 value_area: number;
-            }
+            };
         };
         color: {
             value: any;
@@ -59,15 +56,15 @@ export interface IParams {
             stroke: {
                 width: number;
                 color: any;
-            },
+            };
             polygon: {
                 nb_sides: number;
-            },
+            };
             image: {
                 src: string;
                 width: number;
                 height: number;
-            }
+            };
         };
         opacity: {
             value: number;
@@ -77,7 +74,7 @@ export interface IParams {
                 speed: number;
                 opacity_min: number;
                 sync: boolean;
-            }
+            };
         };
         size: {
             value: number;
@@ -87,7 +84,7 @@ export interface IParams {
                 speed: number;
                 size_min: number;
                 sync: boolean;
-            }
+            };
         };
         line_linked: {
             enable: boolean;
@@ -114,7 +111,7 @@ export interface IParams {
                 enable: boolean;
                 rotateX: number;
                 rotateY: number;
-            }
+            };
         };
         array: any[];
     };
@@ -138,7 +135,7 @@ export interface IParams {
                 distance: number;
                 line_linked: {
                     opacity: number;
-                }
+                };
             };
             bubble: {
                 distance: number;

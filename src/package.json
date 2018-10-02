@@ -1,9 +1,9 @@
 {
-    "name": "@bbougot/angular-particle",
+    "name": "angular-particle",
     "version": "1.0.12",
     "repository": {
         "type": "git",
-        "url": "https://github.com/bbougot/angular-particle"
+        "url": "https://github.com/arvanis/angular-particle"
     },
     "author": {
         "name": "Benjamin Bougot"
@@ -20,7 +20,7 @@
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/bbougot/angular-particle/issues"
+        "url": "https://github.com/arvanis/angular-particle/issues"
     },
     "module": "angular-particle.js",
     "typings": "angular-particle.d.ts",

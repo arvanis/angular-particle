@@ -1,5 +1,5 @@
 {
-    "name": "@bbougot/angular-particle",
+    "name": "angular-particle",
     "version": "1.0.12",
     "scripts": {
         "build": "gulp build",
@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/bbougot/angular-particle"
+        "url": "https://github.com/arvanis/angular-particle"
     },
     "author": {
         "name": "Benjamin Bougot"

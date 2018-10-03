@@ -111,9 +111,9 @@ var getDefaultParams = function () {
     return {
         particles: {
             number: {
-                value: 100,
+                value: 80,
                 density: {
-                    enable: true,
+                    enable: false,
                     value_area: 800
                 }
             },
@@ -127,7 +127,7 @@ var getDefaultParams = function () {
                     color: '#000000'
                 },
                 polygon: {
-                    nb_sides: 5
+                    nb_sides: 4
                 },
                 image: {
                     src: '',
@@ -136,30 +136,30 @@ var getDefaultParams = function () {
                 }
             },
             opacity: {
-                value: 0.5,
+                value: 0.4,
                 random: false,
                 anim: {
-                    enable: true,
+                    enable: false,
                     speed: 1,
                     opacity_min: 0.1,
                     sync: false
                 }
             },
             size: {
-                value: 3,
+                value: 1,
                 random: true,
                 anim: {
                     enable: false,
                     speed: 40,
-                    size_min: 0,
+                    size_min: 0.1,
                     sync: false
                 }
             },
             line_linked: {
                 enable: true,
-                distance: 150,
+                distance: 120,
                 color: '#FFF',
-                opacity: 0.6,
+                opacity: 0.15,
                 width: 1,
                 shadow: {
                     enable: false,
@@ -169,16 +169,16 @@ var getDefaultParams = function () {
             },
             move: {
                 enable: true,
-                speed: 3,
-                direction: 'none',
-                random: false,
-                straight: false,
+                speed: 1.4,
+                direction: 'left',
+                random: true,
+                straight: true,
                 out_mode: 'out',
-                bounce: true,
+                bounce: false,
                 attract: {
                     enable: false,
-                    rotateX: 3000,
-                    rotateY: 3000
+                    rotateX: 600,
+                    rotateY: 1200
                 }
             },
             array: []
@@ -187,8 +187,8 @@ var getDefaultParams = function () {
             detect_on: 'canvas',
             events: {
                 onhover: {
-                    enable: true,
-                    mode: 'grab'
+                    enable: false,
+                    mode: 'repulse'
                 },
                 onclick: {
                     enable: true,
@@ -198,15 +198,17 @@ var getDefaultParams = function () {
             },
             modes: {
                 grab: {
-                    distance: 200,
+                    distance: 400,
                     line_linked: {
                         opacity: 1
                     }
                 },
                 bubble: {
-                    distance: 200,
-                    size: 80,
-                    duration: 0.4
+                    distance: 400,
+                    size: 40,
+                    duration: 0.4,
+                    opacity: 8,
+                    speed: 3
                 },
                 repulse: {
                     distance: 200,
